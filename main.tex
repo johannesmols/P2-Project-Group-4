@@ -1,0 +1,351 @@
+\documentclass[12p]{article}
+
+\usepackage{geometry} % Requied to change the page size to A4
+\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+\usepackage[nopar]{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{fancyhdr}
+\usepackage[parfill]{parskip} % Makes sure to put line breaks in between paragraphs and have no indentation
+\usepackage{dirtytalk} % Used for quotations (\say{quote})
+\usepackage[toc,page]{appendix}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{minted} % Used for including code with syntax highlighting: https://www.sharelatex.com/learn/Code_Highlighting_with_minted
+\usepackage{fontawesome} % Allows usage of icons within text
+\usepackage{enumitem}
+\usepackage[final]{pdfpages}
+
+\usepackage[
+ style=numeric,
+ sorting=none
+ ]{biblatex}
+\addbibresource{references.bib}
+
+\linespread{1.2} % Line spacing
+\setlength\parindent{0pt} % Globally suppress indentation
+ 
+\graphicspath{{pics/}} % Specifies the directory where pictures are stored
+
+\pagestyle{fancy} % Use this, if a header on each page with the section title and page number is wanted
+\fancyhf{} % Removes all headers and footers, comment this to show page number at the bottom of each page again
+\fancyhead[L]{\rightmark} % Sets the section title on the left side of the header
+\fancyhead[R]{\thepage} % Sets the page number on the right side of the header
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines
+\newcommand{\SlimHRule}{\rule{\linewidth}{0.25mm}} % Defines a new command for horizontal lines
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+	 
+	\center
+	 
+	%------------------------------------------------
+	%	Logo
+	%------------------------------------------------
+		
+	\includegraphics[width=0.2\textwidth]{pics/AAU_Logo.png}\\[1cm]
+		 
+		%------------------------------------------------
+		%	Headings
+		%------------------------------------------------
+			
+		\textsc{\LARGE Aalborg University Copenhagen}\\[1.5cm]
+			
+		\textsc{\Large P2 Project}\\[0.5cm]
+			
+		\textsc{\large Group 4}\\[0.5cm]
+			
+		\textsc{\large IT, Communication and New Media}\\[0.5cm]
+			
+			
+		%------------------------------------------------
+		%	Title
+		%------------------------------------------------
+			
+		\HRule\\[0.4cm]
+			
+		{\huge\bfseries Cartographer}\\[0.4cm]
+		
+		\HRule\\[0.4cm]
+			
+		%{\huge\bfseries This page will be replaced with AAU's sample header page}\\[0.4cm]
+			
+		%------------------------------------------------
+		%	Author(s) and Supervisor(s)
+		%------------------------------------------------
+			
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{Authors}\\
+				Ludvig Alexander \textsc{Brüchmann} \\
+				Johannes \textsc{Mols} \\
+				Caty Alexandra \textsc{Samata} \\
+				Agata \textsc{Surmacz} \\
+				Ricardo \textsc{Yaben} \\
+				Boris \textsc{Yordanov} \\
+				Benas \textsc{Zauka} \\
+			\end{flushleft}
+		\end{minipage}
+		~
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushright} \large
+				\emph{Study Numbers} \\
+				- \\
+				20174921 \\
+				- \\
+				- \\
+				- \\
+				- \\
+				- \\
+			\end{flushright}
+		\end{minipage}\\[0.5cm]
+		 
+		%------------------------------------------------
+		 
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{Supervisor}\\
+				Jannick Kirk \textsc{Sørensen} \\
+				Sokol \textsc{Kosta} \\
+			\end{flushleft}
+		\end{minipage}
+		~
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushright} \large
+			\end{flushright}
+		\end{minipage}\\[0.5cm]
+		
+		%------------------------------------------------
+		%	Date
+		%------------------------------------------------
+			
+		\vfill\vfill\vfill % Position the date 3/4 down the remaining page
+			
+		{\large\today} % Date, change the \today to a set date if you want to be precise
+			
+		\end{titlepage}
+		
+		%----------------------------------------------------------------------------------------
+		%	SYNOPSIS / ABSTRACT
+		%----------------------------------------------------------------------------------------
+		
+		\begin{abstract}
+			\thispagestyle{plain} %Sets the page style for this specific page to plain, to remove the header and show the page number at the bottom
+			
+			\noindent This is our abstract
+			\newline \newline
+			\noindent ...
+			
+		\end{abstract}
+		
+		\newpage
+		
+		%----------------------------------------------------------------------------------------
+		%	TABLE OF CONTENTS
+		%----------------------------------------------------------------------------------------
+		
+		\tableofcontents % Include a table of contents
+		\thispagestyle{plain} %Sets the page style for this specific page to plain, to remove the header and show the page number at the bottom
+		
+		\newpage % Begins the report on a new page instead of on the same page as the table of contents 
+		
+		%----------------------------------------------------------------------------------------
+		%	INTRODUCTION
+		%----------------------------------------------------------------------------------------
+		
+		\section{Introduction}
+		
+		\subsection{Problem introduction} \label{ProblemIntroduction}
+		
+		This project specifically focuses on Google and their Google Maps service. With Android having a market share of 75\% in 2017, according to IDC \cite{SmartphoneOSMarketShare}, and Google Maps being pre-installed on every Android device, Google can collect location-based information on a big portion of humanity. In fact, more than 2 billion \cite{AndroidMonthlyActiveUsers}, as Google announced in 2017.
+		
+		As an attempt to give users access to their own data, Google launched "Latitude" in 2009 \cite{GoogleLatitude}. This was a web and mobile app, that tracked your location history and shared it with your contacts. This project was retired in 2013. Snapchat, yet another major social media player, released a similar feature on their platform in 2017 \cite{SnapchatMap}. Both of those projects raised a lot of concern about user privacy.
+		
+		In 2015, Google announced a comeback of the location history \cite{TimelineAnnouncement}. However, this feature keeps the user's data private and only visible to the user itself. This timeline tracks a users movement at all times, and can even determine which kind of transportation he or she used. The user can then view their timeline for each day.
+		
+		Unfortunately, the timeline only shows a single day at once and doesn't deliver in-depth statistics or other useful information. And this is where this project kicks in. 
+		
+		Google lets users download their raw location history as a file, containing bare coordinates, timestamps and presumed activities (like riding a bike, taking the train, etc.). The application behind this project focuses on extracting this data and giving the user an overview of what is being tracked.
+		
+		\subsection{Problem formulation} \label{ProblemFormulation}
+		
+		What information can you extract from the data that Google is collecting from you, specifically the location history? How can we use that data for the user’s benefit? Would users be interested in getting useful advice collected from that data?
+		
+		
+		\subsection{Project delimitation} \label{ProjectDelimitations}
+		This report will not go into market or business analysis of any kind.
+		
+		(+ privacy, 5th semester: Giant problem, not solving now.)
+		
+		\subsection{Project introduction} \label{ProjectIntroduction}
+		
+		Due to increasing advantages brought upon by active developments in various technology, the world has gained a new level of mobility. This was made possible by the steady process of globalisation. As such, technology plays a key role in today's society. Using such technology, both the developers and the users are able to collect, maintain and access sensitive information and data, stored about the user within personal technology, which includes information such as whereabouts (visited locations, areas of visit within a specific time of day/date, etc.), interests, etc. An existing practice of abusing such information is especially predominant online, and used in unison with ads.
+		
+		Google collects your personal data in order to target ads, as well as to improve your experience when using a specific device. Here are some of the things Google most likely knows about you, if you use your device frequently:
+		\begin{itemize}
+			\item Your name, gender and birthdate.
+			\item Your personal cellphone number(-s).
+			\item Your recent Google searches.
+			\item Websites that you've visited.
+			\item Where you've been over the past several years.
+			\item Your interests.
+			\item Where you work and your home address.
+			\item And these are just a couple of things, there are many more to name.
+		\end{itemize}
+		<add fluff>
+		
+		<insert pic of Google’s Location History page>
+		
+		However, the way to access this information is not equally as easy for the developers and the users. As such, the goal of our project is to create an application that grants you access to the information Google receives and stores for you, and use it for personal benefit. To be more precise, we want to take information that Google stores about your past and present locations and make it easily accessible via heatmaps, graphs and diagrams: we want to take Google's Location History page and make it more comfortable to use, as well as to bring attention to the fact that the access to such information is not limited to just the developers.
+		
+		
+		%----------------------------------------------------------------------------------------
+		%	METHODOLOGY
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\section{Methodology} \label{Methodology}
+		
+		\subsection{State of the Art}
+		Explain how we learned about Google's tracking, existing solutions and data visualisation types
+		
+		\subsection{Location History}
+		Explain the JSON's structure and content
+		
+		\subsection{Database}
+		Explain choice of db and encryption
+		
+		\subsection{Visual Documentation}
+		Project visualisation is very important in that it creates the foundation for the entire process flow. Without a sketch, or a draft, working on a single application in a group of individuals would be almost impossible, as everyone has different ideas of how a good application has to look and function. The right visualisation is crucial for follow-up decisions, the application’s structure and data analysis. For that reason, to ensure that all of us had mutual intentions and goals when it comes to the structure of this application, we decided to create desirable mock-up visuals for our application using the online services of the “Marvelapp” sketching app. In addition, as we wanted the application to be accessible to a broader scale of users, not just ones exclusively limited to mobile phones, despite them being the major demographic, we decided to develop the visualisation with tablet users in mind as well.
+		
+		\subsection{Technical Documentation}
+		Finding the right APIs
+		Authentication
+		
+		\subsection{Survey}
+		How we came up with the questions
+		
+		\subsection{Development Methodology}
+		
+		%----------------------------------------------------------------------------------------
+		%	STATE OF THE ART
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\section{State of the Art} \label{sec:StateOfTheArt}
+		\subsection{Introduction}
+		
+		Explain Google's tracking policy
+		
+		\newpage
+		\subsection{Competitiors}
+		\begin{itemize}
+			\item https://www.google.com/maps/timeline
+			\item https://locationhistoryvisualizer.com
+			\item http://theyhaveyour.info/
+		\end{itemize}
+		%------------------------------------------------
+		
+		\newpage
+		\subsection{Conclusion}
+		
+		%----------------------------------------------------------------------------------------
+		%	VISUAL DOCUMENTATION
+		%----------------------------------------------------------------------------------------
+		
+		\clearpage
+		\section{Visual Documentation} \label{VisualDocumentation}
+		\subsection{Introduction}
+		
+		\subsection{Introduction Screen}
+		<insert pic of intro here>
+		
+		A .json file that contains all the location-based information is needed to be uploaded to the application to fully access it. As a precaution, in case people do not know where they can find said file to download, we’ve included a window that contains a button that, when pressed, directs the user to the download location. Additionally, the application can also unzip a file, so you wouldn’t have to do it manually if your .json file is stored within a .zip folder.
+		
+		\subsection{Main dashboard}
+		<insert pic of “Statistics” here>
+		
+		When you upload your .json file and your app finally opens, you are directed towards a screen full of diagrams, graphs and heatmaps. By pressing each one individually, you are able to access your information in a myriad of different selections: You can see how much time you’ve spent in different locations, you can access information on the routes you frequent most often, how much time you spend going to said routes, how long you stay in certain locations and what transport you take to get there, as well as the average distance you’ve travelled in total. In addition, you can select the calendar to change the duration of time the diagrams, graphs and heatmaps take your information into account (Example: If you select a week, the application will display your records within that week.). You can also share your diagrams with your friends, or post them online if you so choose.
+		
+		\subsection{Favourite places}
+		<insert pic of “Favourite Places” here>
+		
+		There’s also an additional selection for your favourite places. By selecting that specific icon in the “Statistics”, you are able to see which locations you most frequent, and access he information that is stored on those locations by the Google servers, such as the opening hours, contact info., distance from your location, etc.
+		
+		\subsection{Advice}
+		<insert picture about “Advice” when done>
+		
+		There is also an option to access individual advice, such as what different routes could you take to get to your desired destination faster, what would be the best time to visit a specific location of your choice, what other locations would you rather want to go to that are closer to your location, among many other things. Plus, you can turn on a warning that reminds you to go outside when the app notices that you are spending too much time indoors.
+		
+		<expand upon later, when done?>
+		\subsection{Conclusion}
+		
+		%------------------------------------------------
+		
+		\clearpage
+		
+		\section{Technical Documentation}
+		\subsection{Introduction}
+		API use
+		Authentication
+		Performance
+		Data quantity
+		
+		\subsection{Conclusion}
+		
+		%----------------------------------------------------------------------------------------
+		%   SURVEY RESULTS
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\section{Survey}
+		\subsection{Introduction}
+		\subsection{Questions}
+		\subsection{Results}
+		\subsection{Conclusion}
+		%----------------------------------------------------------------------------------------
+		%	DISCUSSION
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\section{Discussion} \label{Discussion}
+		
+		%----------------------------------------------------------------------------------------
+		%	CONCLUSION
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\section{Conclusion}
+		
+		%----------------------------------------------------------------------------------------
+		%	BIBLIOGRAPHY
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\printbibliography[heading=bibintoc,title={References}]
+		
+		%----------------------------------------------------------------------------------------
+		%	APPENDIX
+		%----------------------------------------------------------------------------------------
+		
+		\newpage
+		\appendix
+		
+		\section{Appendix}
+		
+		%------------------------------------------------
+		
+\end{document}
